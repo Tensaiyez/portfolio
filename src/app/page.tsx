@@ -287,8 +287,8 @@ export default function Home() {
             <div className="bg-card border border-border rounded-lg p-8 hover-scale hover:shadow-xl transition-all duration-500 group">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Software Engineer (Grade 6)</h3>
-                  <p className="text-lg text-primary font-medium group-hover:text-purple-600 transition-colors duration-300">Intel | Cloud, Security & AI</p>
+                  <p className="text-3xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300 mb-2">Intel | Cloud, Security & AI</p>
+                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Software Engineer (Grade 6)</h3>
                 </div>
                 <div className="text-muted-foreground group-hover:text-primary transition-colors duration-300">May 2023 – July 2025</div>
               </div>
@@ -303,8 +303,8 @@ export default function Home() {
             <div className="bg-card border border-border rounded-lg p-8 hover-scale hover:shadow-xl transition-all duration-500 group">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Software Engineer (MTS 2)</h3>
-                  <p className="text-lg text-primary font-medium group-hover:text-purple-600 transition-colors duration-300">VMware | Cloud & Blockchain</p>
+                  <p className="text-3xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300 mb-2">VMware | Cloud & Blockchain</p>
+                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Software Engineer (MTS 2)</h3>
                 </div>
                 <div className="text-muted-foreground group-hover:text-primary transition-colors duration-300">Feb 2022 – May 2023</div>
               </div>
@@ -319,8 +319,8 @@ export default function Home() {
             <div className="bg-card border border-border rounded-lg p-8 hover-scale hover:shadow-xl transition-all duration-500 group">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Software Engineer Intern</h3>
-                  <p className="text-lg text-primary font-medium group-hover:text-purple-600 transition-colors duration-300">Coinbase</p>
+                  <p className="text-3xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300 mb-2">Coinbase</p>
+                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Software Engineer Intern</h3>
                 </div>
                 <div className="text-muted-foreground group-hover:text-primary transition-colors duration-300">Sep 2021 – Dec 2021</div>
               </div>
@@ -334,8 +334,8 @@ export default function Home() {
             <div className="bg-card border border-border rounded-lg p-8 hover-scale hover:shadow-xl transition-all duration-500 group">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h3 className="text-2xl font-semibold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Blockchain Engineer Intern</h3>
-                  <p className="text-lg text-primary font-medium group-hover:text-purple-600 transition-colors duration-300">VMware | Arlington, VA</p>
+                  <p className="text-3xl font-bold text-foreground group-hover:text-blue-600 transition-colors duration-300 mb-2">VMware</p>
+                  <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300">Blockchain Engineer Intern</h3>
                 </div>
                 <div className="text-muted-foreground group-hover:text-primary transition-colors duration-300">May 2021 – Aug 2021</div>
               </div>
