@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Github, Linkedin, Mail, ExternalLink, Code, Palette, Database, Smartphone, Sun, Moon, Download, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail, ExternalLink, Code, Palette, Database, Smartphone, Sun, Moon, Download, ArrowUp, Menu, X } from "lucide-react";
 import { useTheme } from "@/lib/theme-context";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
   const [mounted, setMounted] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -53,6 +54,7 @@ export default function Home() {
     if (element) {
       // Immediately set the active section when clicking
       setActiveSection(sectionId);
+      setMobileMenuOpen(false); // Close mobile menu when navigating
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -79,14 +81,15 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground transition-all duration-300">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 TZ
               </span>
             </div>
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-4">
+              {/* Desktop Navigation */}
               <div className="hidden md:flex items-center space-x-1 bg-slate-100 dark:bg-slate-800 rounded-full p-1">
                 {[
                   { id: "home", label: "Home" },
@@ -109,41 +112,83 @@ export default function Home() {
                   </button>
                 ))}
               </div>
+              
               <button
                 onClick={toggleTheme}
-                className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 group"
+                className="p-2 sm:p-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200 group"
                 aria-label="Toggle theme"
                 title="Manual theme toggle (overrides time-based theme)"
               >
                 {theme === "light" ? (
-                  <Moon className="w-5 h-5 text-slate-600 group-hover:text-slate-900 transition-colors" />
+                  <Moon className="w-4 h-4 sm:w-5 sm:h-5 text-slate-600 group-hover:text-slate-900 transition-colors" />
                 ) : (
-                  <Sun className="w-5 h-5 text-slate-400 group-hover:text-slate-200 transition-colors" />
+                  <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400 group-hover:text-slate-200 transition-colors" />
+                )}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-200"
+                aria-label="Toggle mobile menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                ) : (
+                  <Menu className="w-5 h-5 text-slate-600 dark:text-slate-400" />
                 )}
               </button>
             </div>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-slate-200/50 dark:border-slate-700/50">
+              <div className="flex flex-col space-y-2 pt-4">
+                {[
+                  { id: "home", label: "Home" },
+                  { id: "about", label: "About" },
+                  { id: "experience", label: "Experience" },
+                  { id: "projects", label: "Projects" },
+                  { id: "articles", label: "Articles" },
+                  { id: "contact", label: "Contact" },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`px-4 py-3 rounded-lg text-left font-medium transition-all duration-200 ${
+                      activeSection === item.id 
+                        ? "bg-foreground text-background shadow-sm" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-slate-100 dark:hover:bg-slate-800"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 pb-10 relative overflow-hidden">
         {/* Animated background elements */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 dark:bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 dark:bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 dark:bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+          <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-primary/10 dark:bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 dark:bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 sm:w-64 h-40 sm:h-64 bg-purple-500/10 dark:bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <div className="text-left">
               <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
+                <span className="inline-block px-3 sm:px-4 py-2 bg-primary/10 text-primary text-xs sm:text-sm font-medium rounded-full mb-4">
                   Available for opportunities
                 </span>
-                <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-6">
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold leading-tight mb-6">
                   <span className="block text-foreground">Tensaiye</span>
                   <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     Zelealem
@@ -152,28 +197,28 @@ export default function Home() {
               </div>
               
               <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-muted-foreground mb-4">
                   Software Engineer
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-lg">
                   Building secure, scalable systems and blockchain solutions at Intel. 
                   Passionate about distributed systems, cloud security, and AI technologies.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button
                   onClick={() => scrollToSection("projects")}
-                  className="group px-8 py-4 bg-foreground text-background rounded-xl font-semibold hover:bg-foreground/90 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                  className="group px-6 sm:px-8 py-3 sm:py-4 bg-foreground text-background rounded-xl font-semibold hover:bg-foreground/90 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-sm sm:text-base"
                 >
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center justify-center gap-2">
                     View Projects
                     <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 </button>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="px-8 py-4 border-2 border-foreground/20 rounded-xl font-semibold hover:border-foreground/40 hover:bg-foreground/5 transition-all duration-300"
+                  className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-foreground/20 rounded-xl font-semibold hover:border-foreground/40 hover:bg-foreground/5 transition-all duration-300 text-sm sm:text-base"
                 >
                   Get In Touch
                 </button>
@@ -181,7 +226,7 @@ export default function Home() {
             </div>
 
             {/* Right side - Visual element */}
-            <div className="relative">
+            <div className="relative hidden lg:block">
               <div className="relative w-full h-96 lg:h-[500px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl transform rotate-3"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl transform -rotate-2"></div>
@@ -192,6 +237,23 @@ export default function Home() {
                     </div>
                     <h3 className="text-xl font-semibold mb-2">Blockchain & Cloud Security</h3>
                     <p className="text-muted-foreground text-sm">Specialized in secure systems</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Visual Element */}
+            <div className="relative lg:hidden mt-8">
+              <div className="relative w-full h-48 mx-auto max-w-sm">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl transform rotate-2"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl transform -rotate-1"></div>
+                <div className="absolute inset-3 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-xl flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center">
+                      <Code className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-1">Blockchain & Cloud Security</h3>
+                    <p className="text-muted-foreground text-xs">Specialized in secure systems</p>
                   </div>
                 </div>
               </div>
